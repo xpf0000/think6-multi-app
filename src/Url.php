@@ -42,17 +42,15 @@ class Url extends UrlBuild
             // 解析到控制器
             $url = substr($url, 1);
         } elseif ('' === $url) {
-            $url = $request->controller() . '/' . $request->action();
-            if (!$this->app->http->isBind()) {
-                $url = $this->getAppName() . '/' . $url;
-            }
+            $url = $this->getAppName() . '/' . $request->controller() . '/' . $request->action();
         } else {
             // 解析到 应用/控制器/操作
             $controller = $request->controller();
+            $app        = $this->getAppName();
             $path       = explode('/', $url);
             $action     = array_pop($path);
             $controller = empty($path) ? $controller : array_pop($path);
-            $app        = empty($path) ? $this->getAppName() : array_pop($path);
+            $app        = empty($path) ? $app : array_pop($path);
             $url        = $controller . '/' . $action;
             $bind       = $this->app->config->get('app.domain_bind', []);
 
@@ -60,7 +58,7 @@ class Url extends UrlBuild
                 isset($bind[$_SERVER['SERVER_NAME']]) && $domain = $_SERVER['SERVER_NAME'];
 
                 $domain = is_bool($domain) ? $key : $domain;
-            } elseif (!$this->app->http->isBind()) {
+            } else {
                 $url = $app . '/' . $url;
             }
         }

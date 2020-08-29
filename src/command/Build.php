@@ -63,12 +63,12 @@ class Build extends Command
     {
         if (!is_dir($this->basePath . $app)) {
             // 创建应用目录
-            mkdir($this->basePath . $app);
+            mkdir($this->basePath . $app, 0755, true);
         }
 
         $appPath   = $this->basePath . ($app ? $app . DIRECTORY_SEPARATOR : '');
         $namespace = 'app' . ($app ? '\\' . $app : '');
-
+        $namespace = str_replace('/', '\\', $namespace);
         // 创建配置文件和公共文件
         $this->buildCommon($app);
         // 创建模块的默认页面
