@@ -1,11 +1,11 @@
 {
-    "name": "topthink/think-multi-app",
+    "name": "xpf0000/think6-multi-app",
     "description": "thinkphp6 multi app support",
-    "license": "Apache-2.0",
+    "license": "MIT",
     "authors": [
         {
-            "name": "liu21st",
-            "email": "liu21st@gmail.com"
+            "name": "xupengfei",
+            "email": "250881478@qq.com"
         }
     ],
     "require": {
@@ -23,6 +23,6 @@
                 "think\\app\\Service"
             ]
         }
-    },    
+    },
     "minimum-stability": "dev"
 }
