@@ -199,7 +199,8 @@ class MultiApp
         $this->app->setNamespace($this->app->config->get('app.app_namespace') ?: 'app\\' . $appName);
 
         if (is_dir($appPath)) {
-            $this->app->setRuntimePath($this->app->getRuntimePath() . $appName . DIRECTORY_SEPARATOR);
+            $name = str_replace('\\', '/', $appName);
+            $this->app->setRuntimePath($this->app->getRuntimePath() . $name . DIRECTORY_SEPARATOR);
             $this->app->http->setRoutePath($this->getRoutePath());
 
             //加载应用
